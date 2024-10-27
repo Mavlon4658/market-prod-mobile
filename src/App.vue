@@ -9,6 +9,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 import { Pagination, Navigation } from 'swiper/modules';
+import { ref, onMounted } from "vue";
 
 export default {
   components: {
@@ -18,14 +19,29 @@ export default {
     SwiperSlide,
   },
   setup() {
+    const tarifSwp = ref(null);
+
+    const onSwiper = (swiperInstance) => {
+      tarifSwp.value = swiperInstance;
+    };
+
+    const goToFirstSlide = (idx) => {
+      if (tarifSwp._value.slideTo(idx)) {
+        tarifSwp._value.slideTo(idx)
+      }
+    }
+
     return {
+      tarifSwp,
+      onSwiper,
+      goToFirstSlide,
       modules: [Pagination],
     };
   },
   data () {
     return {
       tarif: 1,
-      accordion: [false, false, false, false, false]
+      accordion: [false, false, false, false, false],
     }
   },
   methods: {
@@ -50,16 +66,6 @@ export default {
         this.$refs.btn2.classList.remove('hide');
       }
     },
-    swpPaginationEvent(idx) {
-      let pagination = document.querySelector('.tarif__swp .swiper-pagination-progressbar span');
-      if (idx == 0) {
-        pagination.style.width = '84px';
-      } else if (idx == 1) {
-        pagination.style.width = 'calc(50% + 24px)';
-      } else {
-        pagination.style.width = '100%';
-      }
-    }
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
@@ -268,16 +274,25 @@ export default {
       <section class="tarif">
         <div class="container tarif__container">
           <h2 class="sec-title tarif__title">Тарифы</h2>
-          <ul class="tarif__type">
-            <li :class="{
-              'active': tarif >= 1
-            }">Бесплатно</li>
-            <li :class="{
-              'active': tarif >= 2
-            }">Базовый</li>
-            <li :class="{
-              'active': tarif >= 3
-            }">Расширенный</li>
+          <ul class="tarif__type" :class="`active-${tarif}`">
+            <li 
+              @click="goToFirstSlide(0)"
+              :class="{
+                'active': tarif == 1
+              }"
+            >Бесплатно</li>
+            <li 
+              @click="goToFirstSlide(1)"
+              :class="{
+                'active': tarif == 2
+              }"
+            >Базовый</li>
+            <li 
+              @click="goToFirstSlide(2)"
+              :class="{
+                'active': tarif == 3
+              }"
+            >Расширенный</li>
           </ul>
           <div class="tarif__discount">
             <h3>Срок подписки</h3>
@@ -302,16 +317,13 @@ export default {
           <swiper
             slidesPerView="auto"
             :spaceBetween="10"
-            :pagination="{
-              type: 'progressbar',
-              clickable: true,
-            }"
-            :modules="modules"
+            :initial-slide="0"
+            :speed="500"
             @slideChange="(swiper) => {
               tarif = swiper.realIndex + 1;
-              swpPaginationEvent(swiper.realIndex);
             }"
             class="tarif__swp"
+            @swiper="onSwiper"
           >
             <swiper-slide class="tarif__card">
               <div class="line"></div>
