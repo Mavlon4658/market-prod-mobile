@@ -7,6 +7,9 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "sass": "^1.69.4",
+    "sass-loader": "^13.3.2",
+    "swiper": "^11.1.14",
     "vue": "^3.2.13"
   },
   "devDependencies": {
