@@ -32,8 +32,41 @@ export default {
     accordionBodyToggle(ref, idx) {
       ref.style.maxHeight = ref.style.maxHeight ? null : ref.scrollHeight + 'px';
       this.accordion[idx] = !this.accordion[idx]
+    },
+    handleScroll() {
+      this.scrollPosition = window.scrollY;
+      let btn1 = this.$refs.btn1.getBoundingClientRect().top;
+      let btn2 = this.$refs.btn2.getBoundingClientRect().top;
+      let windowHeight = window.innerHeight;
+      let condition1 = btn1 - windowHeight + 56;
+      let condition2 = btn2 - windowHeight + 56;
+      if (condition1 <= 0 && condition2 >= 0) {
+        this.$refs.btn1.classList.add('hide');
+        this.$refs.btn.classList.add('active');
+        this.$refs.btn2.classList.add('hide');
+      } else {
+        this.$refs.btn1.classList.remove('hide');
+        this.$refs.btn.classList.remove('active');
+        this.$refs.btn2.classList.remove('hide');
+      }
+    },
+    swpPaginationEvent(idx) {
+      let pagination = document.querySelector('.tarif__swp .swiper-pagination-progressbar span');
+      if (idx == 0) {
+        pagination.style.width = '84px';
+      } else if (idx == 1) {
+        pagination.style.width = 'calc(50% + 24px)';
+      } else {
+        pagination.style.width = '100%';
+      }
     }
-  }
+  },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  },
 }
 </script>
 
@@ -88,12 +121,16 @@ export default {
               <p>Следи за позициями своих товаров <br> в поисковых запросах</p>
             </li>
           </ul>
-          <a href="#" class="btn-gradient">
+          <a href="#" class="btn-gradient" ref="btn1">
             <img :src="$getImage('fire.svg')" alt="">
             <span>Попробовать бесплатно</span>
           </a>
         </div>
       </section>
+      <a href="#" class="btn-gradient fixed-btn" ref="btn">
+        <img :src="$getImage('fire.svg')" alt="">
+        <span>Попробовать бесплатно</span>
+      </a>
       <!-- Effective toos end -->
 
       <!-- Tools -->
@@ -270,7 +307,10 @@ export default {
               clickable: true,
             }"
             :modules="modules"
-            @slideChange="(swiper) => {tarif = swiper.realIndex + 1}"
+            @slideChange="(swiper) => {
+              tarif = swiper.realIndex + 1;
+              swpPaginationEvent(swiper.realIndex);
+            }"
             class="tarif__swp"
           >
             <swiper-slide class="tarif__card">
@@ -359,7 +399,7 @@ export default {
             </swiper-slide>
             <swiper-slide class="tarif__card">
               <div class="line bg-gradient"></div>
-              <h4 class="title">Тариф «Расширенный»</h4>
+              <h4 class="title nowrap">Тариф «Расширенный»</h4>
               <p class="subtitle">Доступны все инструменты <span>+ 7 кабинетов</span></p>
               <h3 class="price">4950 ₽/месяц</h3>
               <div class="status">Что включено:</div>
@@ -489,7 +529,7 @@ export default {
         <div class="container give-try__container">
           <h2 class="sec-title give-try__title">Перед тем как покупать протестируйте сервис бесплатно</h2>
           <p class="give-try__description">У вас откроется доступ ко всем инструментам на 3 дня</p>
-          <a href="#" class="btn-gradient">
+          <a href="#" class="btn-gradient hide" ref="btn2">
             <img :src="$getImage('fire.svg')" alt="">
             <span>Попробовать бесплатно</span>
           </a>

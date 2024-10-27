@@ -34,11 +34,28 @@ body {
     color: white;
     font-size: 16px;
     font-weight: 500;
+
+    &.hide {
+        opacity: 0;
+    }
 }
 
 .sec-title {
     font-size: 24px;
     font-weight: 600;
+}
+
+.fixed-btn {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    display: none;
+    z-index: 3;
+
+    &.active {
+        display: flex;
+    }
 }
 
 // Header
@@ -425,6 +442,8 @@ body {
         span {
             background: linear-gradient(to right, #FD3237, #7733FC);
             border-radius: 4px;
+            width: 84px;
+            transform: scale(1) !important;
         }
     }
 
@@ -469,6 +488,13 @@ body {
             font-weight: 600;
             margin-bottom: 7px;
             letter-spacing: -0.4px;
+
+            &.nowrap {
+                white-space: nowrap;
+                text-align: center;
+                min-width: calc(100% + 31px);
+                margin-left: -14px;
+            }
         }
 
         .subtitle {
