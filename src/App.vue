@@ -317,7 +317,7 @@ export default {
           <swiper
             slidesPerView="auto"
             :spaceBetween="10"
-            :initial-slide="0"
+            :initial-slide="1"
             :speed="500"
             :centeredSlides="true"
             @slideChange="(swiper) => {
