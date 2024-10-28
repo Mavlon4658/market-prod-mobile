@@ -87,7 +87,7 @@ export default {
       <section class="home">
         <div class="container home__container">
           <h2 class="sec-title home__title">Сервис <span>аналитики</span> <br> <span>и учета финансов</span> <br> для селлеров Wildberries</h2>
-          <p class="home__description">Отслеживай свою прибыль <br> и получай рекомендации, которые помогут ее увеличить</p>
+          <p class="home__description">Отслеживай свою прибыль <br> и получай рекомендации, <br> которые помогут ее увеличить</p>
           <a href="#" class="btn-gradient">
             <img :src="$getImage('fire.svg')" alt="">
             <span>Попробовать бесплатно</span>
@@ -297,7 +297,7 @@ export default {
           <div class="tarif__discount">
             <h3>Срок подписки</h3>
             <div class="line">
-              <span></span>
+              <span :class="`active-${tarif}`"></span>
             </div>
             <ul>
               <li>
@@ -319,6 +319,7 @@ export default {
             :spaceBetween="10"
             :initial-slide="0"
             :speed="500"
+            :centeredSlides="true"
             @slideChange="(swiper) => {
               tarif = swiper.realIndex + 1;
             }"
@@ -363,7 +364,7 @@ export default {
             </swiper-slide>
             <swiper-slide class="tarif__card">
               <div class="line bg-violet"></div>
-              <h4 class="title">Тариф «Базовый»</h4>
+              <h4 class="title">Базовый</h4>
               <p class="subtitle">Доступны все инструменты</p>
               <h3 class="price">990 ₽/месяц</h3>
               <div class="status">Что включено:</div>
@@ -411,7 +412,7 @@ export default {
             </swiper-slide>
             <swiper-slide class="tarif__card">
               <div class="line bg-gradient"></div>
-              <h4 class="title nowrap">Тариф «Расширенный»</h4>
+              <h4 class="title">Расширенный</h4>
               <p class="subtitle">Доступны все инструменты <span>+ 7 кабинетов</span></p>
               <h3 class="price">4950 ₽/месяц</h3>
               <div class="status">Что включено:</div>

@@ -43,6 +43,7 @@ body {
 .sec-title {
     font-size: 24px;
     font-weight: 600;
+    line-height: 26px;
 }
 
 .fixed-btn {
@@ -61,7 +62,7 @@ body {
 // Header
 .header {
     background: white;
-    padding: 5px 0;
+    padding: 4px 0 0;
     border-radius: 0 0 7px 7px;
 
     &__container {
@@ -153,6 +154,8 @@ body {
     &__description {
         font-size: 16px;
         margin-bottom: 27px;
+        line-height: 20px;
+        letter-spacing: -0.25px;
     }
 
     &__card {
@@ -222,7 +225,7 @@ body {
         &_wrap {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
         }
 
         .accordion {
@@ -234,6 +237,7 @@ body {
                 h3 {
                     font-size: 16px;
                     font-weight: 600;
+                    line-height: 20px;
                 }
 
                 img {
@@ -337,7 +341,7 @@ body {
 
 // Tarif
 .tarif {
-    margin-bottom: 35px;
+    margin-bottom: 34px;
 
     &__title {
         margin-bottom: 30px;
@@ -418,6 +422,7 @@ body {
                 height: 100%;
                 border-radius: 4px;
                 background: linear-gradient(to right, #FD3237, #7733FC);
+                transition: .3s ease all;
                 
                 &::before {
                     content: "";
@@ -439,6 +444,18 @@ body {
                     height: 8px;
                     border-radius: 50%;
                     background: white;
+                }
+
+                &.active-1 {
+                    width: calc(100% / 3);
+                }
+
+                &.active-2 {
+                    width: calc(100% / 3 * 2 - 12px);
+                }
+
+                &.active-3 {
+                    width: calc(100%);
                 }
             }
         }
@@ -474,16 +491,16 @@ body {
         }
 
         .swiper-slide {
-            width: 276px;
+            width: 268px;
             height: auto;
         }
     }
     
     &__card {
         background: white;
-        border-radius: 20px;
+        border-radius: 10px;
         overflow: hidden;
-        padding: 13px 17px 20px 14px;
+        padding: 21px 17px 20px 14px;
 
         .line {
             position: absolute;
@@ -505,8 +522,8 @@ body {
         .title {
             font-size: 24px;
             font-weight: 600;
-            margin-bottom: 7px;
-            letter-spacing: -0.4px;
+            margin-bottom: 4px;
+            letter-spacing: -0.25px;
 
             &.nowrap {
                 white-space: nowrap;
@@ -520,7 +537,8 @@ body {
             color: #212121;
             font-size: 14px;
             font-weight: 500;
-            margin-bottom: 26px;
+            margin-bottom: 19px;
+            letter-spacing: -0.25px;
             display: inline-block;
             position: relative;
 
@@ -535,7 +553,7 @@ body {
         .price {
             font-size: 30px;
             font-weight: 600;
-            margin-bottom: 26px;
+            margin-bottom: 18px;
         }
 
         .status {
@@ -548,7 +566,7 @@ body {
         .networks {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 14px;
             margin-bottom: 20px;
 
             a {
@@ -616,7 +634,7 @@ body {
         &_item {
             background: white;
             border-radius: 16px;
-            padding: 16px;
+            padding: 10px 2px 11px 11px;
 
             h3 {
                 display: flex;
@@ -635,7 +653,8 @@ body {
                 font-size: 14px;
                 font-weight: 500;
                 color: #3D3A3A;
-                letter-spacing: -0.4px;
+                letter-spacing: -0.3px;
+                line-height: 17px;
 
                 span {
                     display: inline;
@@ -689,7 +708,7 @@ body {
             display: flex;
             align-items: flex-start;
             gap: 10px;
-            margin-bottom: 19px;
+            margin-bottom: 17px;
         }
 
         .user-logo {
@@ -712,7 +731,8 @@ body {
             gap: 4px;
             color: #747474;
             font-size: 14px;
-            font-weight: 500;;
+            font-weight: 500;
+            letter-spacing: -0.25px;
 
             img {
                 flex-shrink: 0;
@@ -729,7 +749,7 @@ body {
             font-size: 14px;
             font-weight: 500;
             color: #747474;
-            letter-spacing: -0.4px;
+            letter-spacing: -0.3px;
             margin-bottom: 37px;
         }
 
@@ -754,18 +774,19 @@ body {
         border-radius: 16px;
         overflow: hidden;
         background: #F8E6ED;
-        padding: 20px 17px 270px 20px;
+        padding: 20px 15px 270px 20px;
         position: relative;
         z-index: 1;
     }
 
     &__title {
-        margin-bottom: 10px;
+        margin-bottom: 9px;
     }
 
     &__description {
         font-size: 16px;
         margin-bottom: 20px;
+        letter-spacing: -0.3px;
     }
 
     &__card {
@@ -789,17 +810,31 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 15px;
         text-align: center;
         font-size: 12px;
     }
 
+    &__logo {
+        margin-bottom: 12px;
+        display: inline-block;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 15px 0 19px;
+        gap: 8px;
+    }
+
     li {
-        font-weight: 500;
+        font-weight: 700;
+        letter-spacing: -0.3px;
     }
 
     p {
         color: #6D6D6D;
+        letter-spacing: -0.3px;
     }
 }
 // Footer end

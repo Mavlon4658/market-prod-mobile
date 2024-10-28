@@ -7,7 +7,7 @@ export default {
 <template>
     <footer class="footer">
         <div class="container footer__container">
-            <router-link to="/">
+            <router-link to="/" class="footer__logo">
                 <img :src="$getImage('footer-logo.svg')" alt="">
             </router-link>
             <p>
